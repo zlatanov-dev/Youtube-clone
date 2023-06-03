@@ -3,13 +3,19 @@ import { Box, CardContent, CardMedia, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import { demoProfilePicture } from "../utils/constants";
 
-function ChannelCard({ channelDetail }) {
-  console.log(channelDetail?.snippet?.thumbnails?.high?.url);
+function ChannelCard({ channelDetail, marginTop }) {
   return (
     <Box
       sx={{
         boxSHadow: "none",
         borderRadius: "20px",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        width: { xs: "356px", md: "320px" },
+        height: "326px",
+        margin: "auto",
+        marginTop,
       }}
     >
       <Link to={`/channel/${channelDetail?.id?.channelId}`}>
@@ -36,13 +42,16 @@ function ChannelCard({ channelDetail }) {
               border: "1px solid #e3e3e3",
             }}
           />
-          <Typography variant='h6' >
-              {channelDetail?.snippet?.title}
-              <CheckCircle sx ={{ fontSize: 15, color:'gray', ml: '5px'}}/>
+          <Typography variant="h6">
+            {channelDetail?.snippet?.title}
+            <CheckCircle sx={{ fontSize: 15, color: "gray", ml: "5px" }} />
           </Typography>
           {channelDetail?.statistics?.subscriberCount && (
             <Typography>
-              {parseInt(channelDetail?.statistics?.subscriberCount).toLocaleString()} Subscribers
+              {parseInt(
+                channelDetail?.statistics?.subscriberCount
+              ).toLocaleString()}{" "}
+              Subscribers
             </Typography>
           )}
         </CardContent>
